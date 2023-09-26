@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 const useForm = (getFreshModelObject: any) => {
 
     const [values, setValues] = useState(getFreshModelObject())
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState<any>({})
 
     const handleInputChange = (e: any) => {
         const {name, value} = e.target

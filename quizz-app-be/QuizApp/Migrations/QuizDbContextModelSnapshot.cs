@@ -16,10 +16,10 @@ namespace QuizApp.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "6.0.21")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("QuizApp.Models.Participant", b =>
                 {
@@ -27,7 +27,7 @@ namespace QuizApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ParticipantId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ParticipantId"), 1L, 1);
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -54,29 +54,33 @@ namespace QuizApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QnId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QnId"), 1L, 1);
 
                     b.Property<int>("Answer")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(50");
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Option1")
-                        .HasColumnType("nvarchar(50");
+                    b.Property<string>("Option1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Option2")
-                        .HasColumnType("nvarchar(50");
+                    b.Property<string>("Option2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Option3")
-                        .HasColumnType("nvarchar(50");
+                    b.Property<string>("Option3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Option4")
-                        .HasColumnType("nvarchar(50");
+                    b.Property<string>("Option4")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("QnInWords")
                         .IsRequired()
-                        .HasColumnType("nvarchar(250");
+                        .HasColumnType("nvarchar(250)");
 
                     b.HasKey("QnId");
 

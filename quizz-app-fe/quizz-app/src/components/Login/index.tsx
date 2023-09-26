@@ -10,6 +10,7 @@ import {
 } from "@mui/material"
 import { Center } from ".."
 import useForm from "../../hooks/useForm"
+import { END_POINT, createApiEndPoint } from "../../api"
 
 const getFreshModelObject = () => ({
   name: "",
@@ -18,13 +19,6 @@ const getFreshModelObject = () => ({
 
 const Login = () => {
   const { values, errors, setErrors, handleInputChange } = useForm(getFreshModelObject)
-
-  const handleLogin = (e: any) => {
-    e.preventDefault()
-    if(validate()) {
-        console.log({ values })
-    }
-  }
 
   const validate = () => {
     const temp = {
@@ -35,6 +29,16 @@ const Login = () => {
     temp.name = values.name != "" ? "" : "This field is required"
     setErrors(temp)
     return Object.values(temp).every((x) => x == "")
+  }
+
+  const handleLogin = (e: any) => {
+    e.preventDefault()
+    if(validate()) {
+        createApiEndPoint(END_POINT.PARTICIPANT)
+          .post(values)
+          .then(res => console.log(res))
+          .catch(res => console.log(res))
+    }
   }
 
   return (
