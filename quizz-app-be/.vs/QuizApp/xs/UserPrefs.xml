@@ -1,24 +1,29 @@
 ﻿<Properties StartupConfiguration="{593F35F7-2072-4C2B-ACC8-FC22CE163073}|Default">
-  <MonoDevelop.Ide.ItemProperties.QuizApp PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="QuizApp/Program.cs">
+    <Files>
+      <File FileName="QuizApp/appsettings.json" />
+      <File FileName="QuizApp/appsettings.Development.json" />
+      <File FileName="QuizApp/Program.cs" Line="34" Column="4" />
+      <File FileName="QuizApp/Controllers/QuestionController.cs" Line="97" Column="39" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="QuizApp">
+          <Node name="QuizApp" expanded="True">
             <Node name="QuizApp">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.QuizApp PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

@@ -11,6 +11,8 @@ import {
 import { Center } from ".."
 import useForm from "../../hooks/useForm"
 import { END_POINT, createApiEndPoint } from "../../api"
+import useStateContext from "../../hooks/useStateContext"
+import { useNavigate } from "react-router-dom"
 
 const getFreshModelObject = () => ({
   name: "",
@@ -18,7 +20,12 @@ const getFreshModelObject = () => ({
 })
 
 const Login = () => {
-  const { values, errors, setErrors, handleInputChange } = useForm(getFreshModelObject)
+  const { values, errors, setErrors, handleInputChange } =
+    useForm(getFreshModelObject)
+
+  const { context, setContext } = useStateContext()
+
+  const navigate = useNavigate()
 
   const validate = () => {
     const temp = {
@@ -33,11 +40,15 @@ const Login = () => {
 
   const handleLogin = (e: any) => {
     e.preventDefault()
-    if(validate()) {
-        createApiEndPoint(END_POINT.PARTICIPANT)
-          .post(values)
-          .then(res => console.log(res))
-          .catch(res => console.log(res))
+    if (validate()) {
+      createApiEndPoint(END_POINT.PARTICIPANT)
+        .post(values)
+        .then((res) => {
+          setContext({ participantId: res.data.participantId })
+          navigate('/quiz')
+          console.log({context})
+        })
+        .catch((res) => console.log(res))
     }
   }
 
@@ -75,9 +86,9 @@ const Login = () => {
                 onChange={handleInputChange}
                 variant='outlined'
                 {...(errors.name && {
-                    error: true,
-                    helperText: errors.name,
-                  })}
+                  error: true,
+                  helperText: errors.name,
+                })}
               />
               <Button
                 type='submit'

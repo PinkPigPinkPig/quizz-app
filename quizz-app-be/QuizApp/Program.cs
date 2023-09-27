@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using QuizApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,10 +16,22 @@ builder.Services.AddDbContext<QuizDbContext>(options =>
 
 var app = builder.Build();
 
+//app.UseCors(options =>
+//    options.WithOrigins("http://127.0.0.1:5173")
+//    .AllowAnyMethod()
+//    .AllowAnyHeader());
+
 app.UseCors(options =>
-    options.WithOrigins("http://127.0.0.1:5173")
+    options.WithOrigins("http://localhost:5173")
     .AllowAnyMethod()
     .AllowAnyHeader());
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Images")),
+    RequestPath = "/Images"
+});
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
