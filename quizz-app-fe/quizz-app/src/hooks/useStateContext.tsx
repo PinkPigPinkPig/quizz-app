@@ -22,19 +22,23 @@ const StateContext = createContext<any>({})
 export default function useStateContext() {
   const { context, setContext } = useContext(StateContext)
   
-  useEffect(() => {
-    localStorage.setItem('context', JSON.stringify(context))
-  }, [context])
   return {
     context,
     setContext: (obj: any) => {
       setContext({ ...context, ...obj })
     },
+    resetContext: () => {
+      localStorage.removeItem('context')
+      setContext(getFreshContext())
+    }
   }
 }
 
 export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
   const [context, setContext] = useState(getFreshContext())
+  useEffect(() => {
+    localStorage.setItem('context', JSON.stringify(context))
+  }, [context])
   return (
     <StateContext.Provider value={{ context, setContext }}>
       {children}

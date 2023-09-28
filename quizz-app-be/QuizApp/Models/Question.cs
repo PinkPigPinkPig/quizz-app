@@ -27,6 +27,8 @@ namespace QuizApp.Models
         [Column(TypeName = "nvarchar(50)")]
         public int Option4 { get; set; }
 
+        public int Level { get; set; }
+
         public int Answer { get; set; }
     }
 }

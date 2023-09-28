@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react"
+import React, { useEffect } from "react"
 import {
   Box,
   Button,
@@ -23,9 +23,13 @@ const Login = () => {
   const { values, errors, setErrors, handleInputChange } =
     useForm(getFreshModelObject)
 
-  const { context, setContext } = useStateContext()
+  const { context, setContext, resetContext } = useStateContext()
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    resetContext()
+  }, [])
 
   const validate = () => {
     const temp = {
@@ -50,6 +54,10 @@ const Login = () => {
         })
         .catch((res) => console.log(res))
     }
+  }
+
+  const handleClickCreateQuestion = () => {
+    navigate('/create-question')
   }
 
   return (
@@ -97,6 +105,14 @@ const Login = () => {
                 sx={{ m: 1, mt: 3, width: "90%" }}
               >
                 Start
+              </Button>
+              <Button
+                variant='contained'
+                size='large'
+                sx={{ m: 1, mt: 3, width: "90%" }}
+                onClick={handleClickCreateQuestion}
+              >
+                Create
               </Button>
             </form>
           </Box>

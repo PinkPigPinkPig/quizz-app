@@ -32,6 +32,10 @@ const Quiz = () => {
   }
 
   useEffect(() => {
+    setContext({
+      timeTaken: 0,
+      selectedOption: [],
+    })
     createApiEndPoint(END_POINT.QUESTION)
       .fetch()
       .then((res) => {
@@ -82,7 +86,14 @@ const Quiz = () => {
         <LinearProgress variant='determinate' value={(qnIndex + 1) * 20} />
       </Box>
       {qns[qnIndex].imageName ? (
-        <CardMedia component='img' image={BASE_URL + 'images/' + qns[qnIndex].imageName} />
+        <CardMedia
+          component='img'
+          image={BASE_URL + "images/" + qns[qnIndex].imageName}
+          sx={{
+            width: "auto",
+            m: "10px auto",
+          }}
+        />
       ) : null}
       <CardContent>
         <Typography variant='h6'>{qns[qnIndex].qnInWords}</Typography>
